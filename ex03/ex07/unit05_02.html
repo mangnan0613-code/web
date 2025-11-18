@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>그림자 효과 만들기</title>
+		<meta charset="UTF-8" />
+		<style type="text/css">
+			/* *{margin: 0; padding: 0;} */
+			body{
+				margin: 0 50px;
+				padding: 20px;
+				border-top: 15px solid #000;
+				height: 400px;
+				box-shadow: 0 10px 2px rgba(0,0,0,.5);
+			}
+			h1{
+				text-align: center;
+				background: yellow;
+				border-radius: 20px 0px;
+				box-shadow: #f00 10px 10px 0;
+				width: 400px;
+				margin: 20px auto;
+				padding: 10px 20px;
+				text-shadow: 7px 7px 10px #333;
+			}
+			div{
+				background: url(./images/frame_beige.png) no-repeat;
+				width: 377px;
+				height: 231px; /* 이미지 검사해서 넓이랑 높이 사이즈 확인해서 넣으면 됨 */
+				margin: 20px auto; /* 가운데로 보내기 */
+				box-shadow: 5px 5px 40px #666;
+				border-radius: 30px; /* PNG에서 레이어 없애든가 */
+				
+			}
+			p{
+				width: 80%;
+				margin: 20px auto;
+				padding-top: 55px; /* 글 가운데로 보내기 */
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>Box Shadow</h1>
+		<div>
+			<p>Try not to become a man of success but rather try to become a man of value. <br />
+						(Albert Einstein)
+						성공한 사람이 아니라 가치 있는 사람이 되려고 힘써라. <br />
+						(알버트 아인슈타인)
+			</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+*{margin: 0; padding: 0;}
+
+a{color: #000; text-decoration: none;}
+ul{list-style: none;}
+
+nav{
+    background: #35bb30;
+    width: 100%;
+    height: 40px;
+}
+nav>ul{
+    display: flex; /* li들이 쭉 옆으로 감 */
+    align-items: center;
+    height: 100%;
+    justify-content: center; /* 가운데로 보내기 */
+}
+nav>ul>li{
+    position: relative; /* 나를 기준으로 해 */
+}
+nav>ul>li>a{
+    padding: 10px 20px; /* 위아래10 양옆20 */
+    color: #fff;
+}
+nav>ul>li>ul{
+    display: none;
+    position: absolute; /* 자기자리로가라는것 */
+    top: 30px;
+    left: 0;
+    background: #b98e8e;
+    width: 100%;
+}
+nav>ul>li:hover>ul{
+    display: block; /* 마우스 올렸을 때 뜨게 하는 것 */
+}
+nav>ul>li>ul>li{
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+nav>ul>li>ul>li:hover{
+    background: #807676;
+}
+nav>ul>li>ul>li>a{}

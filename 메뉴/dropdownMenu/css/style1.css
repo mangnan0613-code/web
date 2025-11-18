@@ -1,0 +1,42 @@
+a{
+    text-decoration: none; color: #000;
+}
+nav{
+    background: #529cc7;
+    padding: 20px 0;
+}
+nav>ul{
+    display: flex;
+    position: relative; /* 자신이 기준 */
+}
+nav>ul>li{
+    position: relative;
+}
+nav>ul>li>a{
+    padding: 19px 20px;
+    text-transform: uppercase; /* 대문자로 바꾸기 */
+    font-weight: bold;
+    color: #fff;
+}
+nav>ul>li>ul{
+    background: #ce5050;
+    top: 36px;
+    width: 100%;
+    position: absolute; /* 펼쳤을 때 전부 다 보이게 하기 */
+    display: none;} /* 투 뎁스일 때 접어놓기 */
+nav>ul:hover>li>ul{
+    text-align: center;
+    display: block;} 
+nav>ul>li>ul>li{
+    transition: .5s;
+}
+nav>ul>li>ul>li:hover{
+    background: red;
+}
+nav>ul>li>ul>li>a{
+    display: block;
+    padding: 20px; /* 인라인 요소여서 패딩이 안 먹음 그래서 블락 시키면 패딩 값 들어감 */
+}
+nav>ul>li>ul>li:hover>a{
+    color: #fff;
+}
