@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>vw/vh vs % 데모</title>
+<style>
+  :root{font-family:system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;}
+  body{margin:20px;line-height:1.4;color:#111;}
+  h2{margin:14px 0 8px;}
+  .note{font-size:13px;color:#555;margin-bottom:12px;}
+
+  /* 부모 컨테이너(고정 너비/높이) */
+  .frame{border:1px solid #ddd;padding:12px;margin-bottom:20px;background:#fafafa;}
+  .frame.wide{width:80%;max-width:1100px;} /* 부모 너비를 브라우저에 따라 변경해 비교 가능 */
+  .frame.fixed{width:700px;} /* 고정 부모 너비 예제 */
+
+  /* 비교 박스 레이아웃 */
+  .compare{display:flex;gap:12px;align-items:flex-start;}
+  .card{flex:1;border-radius:6px;padding:12px;background:#fff;border:1px solid #e6e6e6;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+  .bar{background:#4aa3ff;color:#fff;padding:8px;border-radius:4px;text-align:center;margin-bottom:8px;}
+
+  /* vw vs % 예제: vw는 뷰포트 기준, %는 부모(.card) 기준 */
+  .box-vw{width:50vw;height:60px;background:#ffd54f;}
+  .box-percent{width:50%;height:60px;background:#81c784;}
+
+  /* vh vs % 예제: vh는 뷰포트 높이 기준, %는 부모(.frame-height) 기준 */
+  .frame-height{height:420px;border:1px dashed #ddd;padding:8px;margin-top:8px;overflow:auto;}
+  .box-vh{height:40vh;background:#ff8a65;}
+  .box-percent-h{height:40%;background:#90caf9;}
+
+  /* 값 표시 */
+  .meta{font-size:13px;color:#222;margin-top:6px;background:#f7f7f7;padding:6px;border-radius:4px;}
+</style>
+</head>
+<body>
+  <h2>vw vs % (너비 비교)</h2>
+  <div class="note">브라우저 창 너비를 바꿔보세요. 왼쪽은 50vw(뷰포트 기준), 오른쪽은 부모 기준 50%입니다.</div>
+
+  <div class="frame wide">
+    <div class="compare">
+      <div class="card">
+        <div class="bar">50vw (뷰포트 기준)</div>
+        <div class="box-vw" id="boxVw"></div>
+        <div class="meta" id="metaVw"></div>
+      </div>
+
+      <div class="card">
+        <div class="bar">50% (부모 기준)</div>
+        <div class="box-percent" id="boxPct"></div>
+        <div class="meta" id="metaPct"></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>vh vs % (높이 비교)</h2>
+  <div class="note">브라우저 창 높이를 바꿔보세요. 왼쪽은 40vh(뷰포트 높이 기준), 오른쪽은 부모 컨테이너(.frame-height) 기준 40%입니다.</div>
+
+  <div class="frame fixed frame-height" id="parentHeight">
+    <div class="compare" style="align-items:stretch;">
+      <div class="card" style="flex:0.9;">
+        <div class="bar">40vh (뷰포트 높이 기준)</div>
+        <div class="box-vh" id="boxVh"></div>
+        <div class="meta" id="metaVh"></div>
+      </div>
+
+      <div class="card" style="flex:0.9;">
+        <div class="bar">40% (부모 기준)</div>
+        <div class="box-percent-h" id="boxPctH"></div>
+        <div class="meta" id="metaPctH"></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  function updateInfo(){
+    const vw = document.getElementById('boxVw');
+    const pct = document.getElementById('boxPct');
+    const vwMeta = document.getElementById('metaVw');
+    const pctMeta = document.getElementById('metaPct');
+
+    const vh = document.getElementById('boxVh');
+    const pctH = document.getElementById('boxPctH');
+    const vhMeta = document.getElementById('metaVh');
+    const pctHMeta = document.getElementById('metaPctH');
+
+    // vw/sec: offsetWidth는 실제 픽셀 값
+    vwMeta.textContent = `너비: ${vw.offsetWidth}px (50vw) — viewport 너비: ${window.innerWidth}px`;
+    pctMeta.textContent = `너비: ${pct.offsetWidth}px (50% of .card 부모 너비: ${pct.parentElement.clientWidth}px)`;
+
+    vhMeta.textContent = `높이: ${vh.offsetHeight}px (40vh) — viewport 높이: ${window.innerHeight}px`;
+    pctHMeta.textContent = `높이: ${pctH.offsetHeight}px (40% of .frame-height 부모 높이: ${document.getElementById('parentHeight').clientHeight}px)`;
+  }
+
+  // 초기 및 리사이즈 시 업데이트
+  updateInfo();
+  window.addEventListener('resize', updateInfo);
+  // 부모 크기가 바뀔 때(예: CSS 변경) 대비 짧은 인터벌로 갱신
+  setInterval(updateInfo, 300);
+</script>
+</body>
+</html>
